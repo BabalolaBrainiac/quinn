@@ -26,20 +26,20 @@ export default function AdminBookingsPage() {
   return (
     <div className="p-8">
       <div className="mb-6">
-        <h1 className="font-display text-4xl font-light text-[#f0ece4]">Bookings</h1>
-        <p className="text-sm text-[#666666] mt-1">{mockBookings.length} total bookings</p>
+        <h1 className="font-display text-4xl font-light text-foreground">Bookings</h1>
+        <p className="text-sm text-muted-foreground mt-1">{mockBookings.length} total bookings</p>
       </div>
 
       {/* Filter tabs */}
-      <div className="flex items-center gap-0 border-b border-[#1c1c1c] mb-6">
+      <div className="flex items-center gap-0 border-b border-border mb-6">
         {(["all", ...statuses] as const).map((s) => (
           <button
             key={s}
             onClick={() => setFilter(s)}
             className={`px-5 py-2.5 text-xs tracking-widest uppercase transition-colors ${
               filter === s
-                ? "text-[#c4a35a] border-b-2 border-[#c4a35a]"
-                : "text-[#666666] hover:text-[#f0ece4] border-b-2 border-transparent"
+                ? "text-gold border-b-2 border-gold"
+                : "text-muted-foreground hover:text-foreground border-b-2 border-transparent"
             }`}
           >
             {s}
@@ -49,31 +49,31 @@ export default function AdminBookingsPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* List */}
-        <div className="lg:col-span-2 border border-[#1c1c1c] overflow-hidden">
+        <div className="lg:col-span-2 border border-border overflow-hidden">
           {bookings.length === 0 ? (
-            <p className="p-6 text-sm text-[#444444]">No bookings in this status.</p>
+            <p className="p-6 text-sm text-muted-foreground">No bookings in this status.</p>
           ) : (
             bookings.map((b) => (
               <div
                 key={b.id}
-                className={`border-b border-[#1c1c1c] last:border-0 px-4 py-4 cursor-pointer transition-colors ${
-                  selected?.id === b.id ? "bg-[#111111]" : "hover:bg-[#0e0e0e]"
+                className={`border-b border-border last:border-0 px-4 py-4 cursor-pointer transition-colors ${
+                  selected?.id === b.id ? "bg-surface" : "hover:bg-surface"
                 }`}
                 onClick={() => setSelected(b)}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm text-[#f0ece4] font-medium">{b.clientName}</p>
-                    <p className="text-xs text-[#666666] mt-0.5">
+                    <p className="text-sm text-foreground font-medium">{b.clientName}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">
                       {b.designTitle} · {b.placement}
                     </p>
-                    <p className="text-xs text-[#444444] mt-1">
+                    <p className="text-xs text-muted-foreground mt-1">
                       {formatShortDate(b.date)} at {b.time}
                     </p>
                   </div>
                   <div className="text-right shrink-0">
                     <Badge variant={statusVariant[b.status]}>{b.status}</Badge>
-                    <p className="text-sm text-[#c4a35a] mt-1.5">{formatNaira(b.amount)}</p>
+                    <p className="text-sm text-gold mt-1.5">{formatNaira(b.amount)}</p>
                   </div>
                 </div>
               </div>
@@ -82,11 +82,11 @@ export default function AdminBookingsPage() {
         </div>
 
         {/* Detail panel */}
-        <div className="border border-[#1c1c1c] p-5 h-fit">
+        <div className="border border-border p-5 h-fit">
           {selected ? (
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-xl font-light text-[#f0ece4]">
+                <h3 className="font-display text-xl font-light text-foreground">
                   {selected.clientName}
                 </h3>
                 <Badge variant={statusVariant[selected.status]}>{selected.status}</Badge>
@@ -106,23 +106,23 @@ export default function AdminBookingsPage() {
                     : []),
                 ].map(({ label, value }) => (
                   <div key={label} className="flex justify-between gap-2">
-                    <span className="text-[#666666] text-xs">{label}</span>
-                    <span className="text-[#f0ece4] text-xs text-right">{value}</span>
+                    <span className="text-muted-foreground text-xs">{label}</span>
+                    <span className="text-foreground text-xs text-right">{value}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="border-t border-[#1c1c1c] mt-4 pt-4 space-y-2">
+              <div className="border-t border-border mt-4 pt-4 space-y-2">
                 <a
                   href={`mailto:${selected.clientEmail}`}
-                  className="flex items-center gap-2 text-xs text-[#666666] hover:text-[#c4a35a] transition-colors"
+                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-gold transition-colors"
                 >
                   <Mail className="h-3.5 w-3.5" />
                   {selected.clientEmail}
                 </a>
                 <a
                   href={`tel:${selected.clientPhone}`}
-                  className="flex items-center gap-2 text-xs text-[#666666] hover:text-[#c4a35a] transition-colors"
+                  className="flex items-center gap-2 text-xs text-muted-foreground hover:text-gold transition-colors"
                 >
                   <Phone className="h-3.5 w-3.5" />
                   {selected.clientPhone}
@@ -130,14 +130,14 @@ export default function AdminBookingsPage() {
               </div>
 
               {selected.notes && (
-                <div className="mt-4 p-3 bg-[#0e0e0e] border border-[#1c1c1c]">
-                  <p className="text-[10px] tracking-widest uppercase text-[#444444] mb-1">Notes</p>
-                  <p className="text-xs text-[#888888] leading-relaxed">{selected.notes}</p>
+                <div className="mt-4 p-3 bg-surface border border-border">
+                  <p className="text-[10px] tracking-widest uppercase text-muted-foreground mb-1">Notes</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{selected.notes}</p>
                 </div>
               )}
             </div>
           ) : (
-            <p className="text-sm text-[#444444] text-center py-8">
+            <p className="text-sm text-muted-foreground text-center py-8">
               Select a booking to view details
             </p>
           )}

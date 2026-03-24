@@ -66,8 +66,8 @@ export default function AdminAvailabilityPage() {
     <div className="p-8">
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="font-display text-4xl font-light text-[#f0ece4]">Availability</h1>
-          <p className="text-sm text-[#666666] mt-1">
+          <h1 className="font-display text-4xl font-light text-foreground">Availability</h1>
+          <p className="text-sm text-muted-foreground mt-1">
             Set which dates and times are open for bookings.
           </p>
         </div>
@@ -79,8 +79,8 @@ export default function AdminAvailabilityPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Calendar picker */}
-        <div className="border border-[#1c1c1c] p-5">
-          <p className="text-xs tracking-[0.15em] uppercase text-[#888888] mb-4">
+        <div className="border border-border p-5">
+          <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
             Select Dates
           </p>
           <Calendar
@@ -99,8 +99,8 @@ export default function AdminAvailabilityPage() {
         </div>
 
         {/* Slot editor */}
-        <div className="border border-[#1c1c1c] p-5">
-          <p className="text-xs tracking-[0.15em] uppercase text-[#888888] mb-4">
+        <div className="border border-border p-5">
+          <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
             {selectedDate && dayEntry
               ? `Slots — ${format(selectedDate, "EEEE, MMM d")}`
               : "Time Slots"}
@@ -115,8 +115,8 @@ export default function AdminAvailabilityPage() {
                   className={cn(
                     "w-full flex items-center justify-between px-4 py-2.5 border text-sm transition-all",
                     slot.available
-                      ? "border-[#c4a35a]/40 text-[#f0ece4] bg-[#c4a35a]/5"
-                      : "border-[#1c1c1c] text-[#444444]"
+                      ? "border-gold/40 text-foreground bg-gold/5"
+                      : "border-border text-muted-foreground"
                   )}
                 >
                   <span>{slot.time}</span>
@@ -127,19 +127,19 @@ export default function AdminAvailabilityPage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-[#444444] text-center py-8">
+            <p className="text-sm text-muted-foreground text-center py-8">
               {selectedDate ? "This date has no slots yet." : "Select a date to manage slots."}
             </p>
           )}
         </div>
 
         {/* Active dates list */}
-        <div className="border border-[#1c1c1c] p-5">
-          <p className="text-xs tracking-[0.15em] uppercase text-[#888888] mb-4">
+        <div className="border border-border p-5">
+          <p className="text-xs tracking-[0.15em] uppercase text-muted-foreground mb-4">
             Available Dates ({days.length})
           </p>
           {days.length === 0 ? (
-            <p className="text-sm text-[#444444]">No dates set.</p>
+            <p className="text-sm text-muted-foreground">No dates set.</p>
           ) : (
             <div className="space-y-2">
               {days
@@ -152,16 +152,16 @@ export default function AdminAvailabilityPage() {
                       className={cn(
                         "flex items-center justify-between p-3 border transition-colors cursor-pointer",
                         selectedDateStr === day.date
-                          ? "border-[#c4a35a]/40 bg-[#c4a35a]/5"
-                          : "border-[#1c1c1c] hover:border-[#2a2a2a]"
+                          ? "border-gold/40 bg-gold/5"
+                          : "border-border hover:border-border"
                       )}
                       onClick={() => setSelectedDate(parseISO(day.date))}
                     >
                       <div>
-                        <p className="text-sm text-[#f0ece4]">
+                        <p className="text-sm text-foreground">
                           {format(parseISO(day.date), "EEE, MMM d")}
                         </p>
-                        <p className="text-[10px] text-[#666666] mt-0.5">
+                        <p className="text-[10px] text-muted-foreground mt-0.5">
                           {openCount} slot{openCount !== 1 ? "s" : ""} open
                         </p>
                       </div>
@@ -170,7 +170,7 @@ export default function AdminAvailabilityPage() {
                           e.stopPropagation();
                           handleRemoveDate(day.date);
                         }}
-                        className="text-[#2a2a2a] hover:text-red-500 transition-colors p-1"
+                        className="text-muted-foreground hover:text-red-500 transition-colors p-1"
                       >
                         <Trash2 className="h-3.5 w-3.5" />
                       </button>

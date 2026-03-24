@@ -93,7 +93,7 @@ export function Logo({ variant = "full", className, size = "md" }: LogoProps) {
         <div className="flex flex-col leading-none">
           <span
             className={cn(
-              "font-display font-light tracking-[0.15em] text-[#f0ece4] uppercase",
+              "font-display font-light tracking-[0.15em] text-foreground uppercase",
               s.text
             )}
           >
@@ -101,7 +101,7 @@ export function Logo({ variant = "full", className, size = "md" }: LogoProps) {
           </span>
           <span
             className={cn(
-              "font-display italic tracking-[0.25em] text-[#c4a35a]",
+              "font-display italic tracking-[0.25em] text-gold",
               size === "sm" ? "text-[10px]" : size === "md" ? "text-xs" : "text-sm"
             )}
           >

@@ -16,7 +16,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium"
+            className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium"
           >
             {label}
           </label>
@@ -24,9 +24,9 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           id={inputId}
           className={cn(
-            "w-full bg-[#111111] border border-[#242424] px-4 py-3 text-sm text-[#f0ece4] placeholder:text-[#444444]",
+            "w-full bg-surface border border-border px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground",
             "transition-colors duration-200 resize-none",
-            "focus:outline-none focus:border-[#c4a35a]",
+            "focus:outline-none focus:border-gold",
             "disabled:opacity-40 disabled:cursor-not-allowed",
             error && "border-red-700",
             className

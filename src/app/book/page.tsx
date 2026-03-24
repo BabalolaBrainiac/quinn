@@ -8,20 +8,20 @@ export default function BookPage() {
     <>
       <Navbar />
       <main className="pt-16 min-h-screen">
-        <div className="border-b border-[#1c1c1c] py-12 px-6">
+        <div className="border-b border-border py-12 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-px w-8 bg-[#c4a35a]" />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">
+              <div className="h-px w-8 bg-gold" />
+              <span className="text-[10px] tracking-[0.3em] uppercase text-gold">
                 Booking
               </span>
             </div>
-            <h1 className="font-display text-5xl font-light text-[#f0ece4]">
+            <h1 className="font-display text-5xl font-light text-foreground">
               Book a Session
             </h1>
           </div>
         </div>
-        <Suspense fallback={<div className="p-12 text-center text-[#666666]">Loading...</div>}>
+        <Suspense fallback={<div className="p-12 text-center text-muted-foreground">Loading...</div>}>
           <BookingFlow />
         </Suspense>
       </main>

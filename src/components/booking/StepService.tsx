@@ -52,10 +52,10 @@ export function StepService({ designId, selected, onNext, onBack }: StepServiceP
   return (
     <div>
       <div className="mb-8">
-        <h2 className="font-display text-4xl font-light text-[#f0ece4] mb-2">
+        <h2 className="font-display text-4xl font-light text-foreground mb-2">
           Where would you like your session?
         </h2>
-        <p className="text-sm text-[#666666]">
+        <p className="text-sm text-muted-foreground">
           Home service is available across Lagos. A 30% premium applies.
         </p>
       </div>
@@ -68,8 +68,8 @@ export function StepService({ designId, selected, onNext, onBack }: StepServiceP
             className={cn(
               "relative overflow-hidden border text-left transition-all duration-200 group",
               picked === service.type
-                ? "border-[#c4a35a]"
-                : "border-[#242424] hover:border-[#333333]"
+                ? "border-gold"
+                : "border-border hover:border-[#333333]"
             )}
           >
             <div className="relative h-32 overflow-hidden">
@@ -87,28 +87,28 @@ export function StepService({ designId, selected, onNext, onBack }: StepServiceP
                 <service.icon
                   className={cn(
                     "h-4 w-4",
-                    picked === service.type ? "text-[#c4a35a]" : "text-[#666666]"
+                    picked === service.type ? "text-gold" : "text-muted-foreground"
                   )}
                 />
                 <span
                   className={cn(
                     "text-xs tracking-[0.1em] uppercase font-medium",
-                    picked === service.type ? "text-[#c4a35a]" : "text-[#888888]"
+                    picked === service.type ? "text-gold" : "text-muted-foreground"
                   )}
                 >
                   {service.label}
                 </span>
               </div>
-              <p className="text-sm text-[#f0ece4] font-medium mb-1">
+              <p className="text-sm text-foreground font-medium mb-1">
                 {getPriceLabel(service.surcharge)}
               </p>
-              <p className="text-xs text-[#666666] leading-relaxed">{service.description}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{service.description}</p>
             </div>
 
             {/* Selected indicator */}
             {picked === service.type && (
-              <div className="absolute top-3 right-3 w-5 h-5 bg-[#c4a35a] flex items-center justify-center">
-                <span className="text-[#080808] text-xs font-bold">✓</span>
+              <div className="absolute top-3 right-3 w-5 h-5 bg-gold flex items-center justify-center">
+                <span className="text-background text-xs font-bold">✓</span>
               </div>
             )}
           </button>

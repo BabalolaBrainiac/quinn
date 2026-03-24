@@ -71,17 +71,17 @@ export function BookingFlow() {
               <div
                 className={`w-7 h-7 flex items-center justify-center text-xs font-medium transition-all duration-300 ${
                   step > s.id
-                    ? "bg-[#c4a35a] text-[#080808]"
+                    ? "bg-gold text-background"
                     : step === s.id
-                    ? "border border-[#c4a35a] text-[#c4a35a]"
-                    : "border border-[#242424] text-[#444444]"
+                    ? "border border-gold text-gold"
+                    : "border border-border text-muted-foreground"
                 }`}
               >
                 {step > s.id ? "✓" : s.id}
               </div>
               <span
                 className={`text-[9px] tracking-widest uppercase mt-1.5 hidden sm:block ${
-                  step === s.id ? "text-[#c4a35a]" : "text-[#444444]"
+                  step === s.id ? "text-gold" : "text-muted-foreground"
                 }`}
               >
                 {s.label}
@@ -90,7 +90,7 @@ export function BookingFlow() {
             {i < STEPS.length - 1 && (
               <div
                 className={`flex-1 h-px mx-2 transition-all duration-500 ${
-                  step > s.id ? "bg-[#c4a35a]/40" : "bg-[#1c1c1c]"
+                  step > s.id ? "bg-gold/40" : "bg-[#1c1c1c]"
                 }`}
               />
             )}

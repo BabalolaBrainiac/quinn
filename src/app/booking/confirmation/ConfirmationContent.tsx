@@ -19,31 +19,31 @@ export function ConfirmationContent() {
     >
       {/* Icon */}
       <div className="flex justify-center mb-8">
-        <div className="w-20 h-20 border border-[#c4a35a]/30 flex items-center justify-center">
-          <CheckCircle2 className="h-10 w-10 text-[#c4a35a]" />
+        <div className="w-20 h-20 border border-gold/30 flex items-center justify-center">
+          <CheckCircle2 className="h-10 w-10 text-gold" />
         </div>
       </div>
 
       <div className="flex items-center justify-center gap-3 mb-6">
-        <div className="h-px w-8 bg-[#c4a35a]" />
-        <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">Confirmed</span>
-        <div className="h-px w-8 bg-[#c4a35a]" />
+        <div className="h-px w-8 bg-gold" />
+        <span className="text-[10px] tracking-[0.3em] uppercase text-gold">Confirmed</span>
+        <div className="h-px w-8 bg-gold" />
       </div>
 
-      <h1 className="font-display text-5xl font-light text-[#f0ece4] mb-4">
+      <h1 className="font-display text-5xl font-light text-foreground mb-4">
         You&apos;re booked.
       </h1>
-      <p className="text-sm text-[#666666] leading-relaxed mb-6">
+      <p className="text-sm text-muted-foreground leading-relaxed mb-6">
         Your session with Quinn is confirmed. Check your email for a full booking
         summary and aftercare instructions.
       </p>
 
       {/* Reference */}
-      <div className="border border-[#1c1c1c] bg-[#0e0e0e] p-4 mb-8">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-[#666666] mb-1">
+      <div className="border border-border bg-surface p-4 mb-8">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1">
           Payment Reference
         </p>
-        <p className="font-mono text-sm text-[#c4a35a] break-all">{ref}</p>
+        <p className="font-mono text-sm text-gold break-all">{ref}</p>
       </div>
 
       <div className="space-y-3">

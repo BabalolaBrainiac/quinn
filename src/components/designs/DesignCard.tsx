@@ -28,13 +28,13 @@ export function DesignCard({ design, index = 0 }: DesignCardProps) {
         onClick={() => setOpen(true)}
       >
         {/* Image */}
-        <div className="relative overflow-hidden bg-[#111111] aspect-[3/4]">
+        <div className="relative overflow-hidden bg-surface aspect-[3/4]">
           {imgError ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#111111]">
-              <div className="w-10 h-10 border border-[#2a2a2a] flex items-center justify-center">
-                <span className="text-[#2a2a2a] text-lg font-display">Q</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface">
+              <div className="w-10 h-10 border border-border flex items-center justify-center">
+                <span className="text-muted text-lg font-display">Q</span>
               </div>
-              <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] capitalize">{design.category}</span>
+              <span className="text-[10px] tracking-widest uppercase text-muted capitalize">{design.category}</span>
             </div>
           ) : (
             <Image
@@ -61,14 +61,14 @@ export function DesignCard({ design, index = 0 }: DesignCardProps) {
           <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-[10px] tracking-[0.15em] uppercase text-[#c4a35a] mb-0.5">
+                <div className="text-[10px] tracking-[0.15em] uppercase text-gold mb-0.5">
                   {design.category}
                 </div>
-                <div className="font-display text-lg text-[#f0ece4] leading-tight">
+                <div className="font-display text-lg text-foreground leading-tight">
                   {design.title}
                 </div>
               </div>
-              <ArrowRight className="h-4 w-4 text-[#c4a35a] shrink-0" />
+              <ArrowRight className="h-4 w-4 text-gold shrink-0" />
             </div>
           </div>
         </div>
@@ -77,12 +77,12 @@ export function DesignCard({ design, index = 0 }: DesignCardProps) {
         <div className="pt-3 pb-1">
           <div className="flex items-start justify-between gap-2">
             <div>
-              <h3 className="text-sm text-[#f0ece4] font-medium leading-snug">{design.title}</h3>
-              <p className="text-xs text-[#666666] mt-0.5 capitalize">{design.category}</p>
+              <h3 className="text-sm text-foreground font-medium leading-snug">{design.title}</h3>
+              <p className="text-xs text-muted mt-0.5 capitalize">{design.category}</p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-sm text-[#c4a35a] font-medium">{formatNaira(design.basePrice)}</p>
-              <p className="text-[10px] text-[#444444]">{design.estimatedHours}h est.</p>
+              <p className="text-sm text-gold font-medium">{formatNaira(design.basePrice)}</p>
+              <p className="text-[10px] text-muted-foreground">{design.estimatedHours}h est.</p>
             </div>
           </div>
         </div>

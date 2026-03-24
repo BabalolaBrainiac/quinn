@@ -38,16 +38,16 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
   return (
     <div>
       <div className="mb-8">
-        <h2 className="font-display text-4xl font-light text-[#f0ece4] mb-2">
+        <h2 className="font-display text-4xl font-light text-foreground mb-2">
           Pick your date & time
         </h2>
-        <p className="text-sm text-[#666666]">
+        <p className="text-sm text-muted-foreground">
           Dates with a gold dot have open slots. Select one to see available times.
         </p>
       </div>
 
       {/* Calendar */}
-      <div className="border border-[#1c1c1c] bg-[#0e0e0e] p-5 mb-6">
+      <div className="border border-border bg-surface p-5 mb-6">
         <Calendar
           selected={selectedDate}
           onSelect={handleDateSelect}
@@ -59,11 +59,11 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
       {/* Time slots */}
       {selectedDate && (
         <div className="mb-8">
-          <p className="text-xs tracking-[0.1em] uppercase text-[#888888] mb-3">
+          <p className="text-xs tracking-[0.1em] uppercase text-muted-foreground mb-3">
             Available times — {format(selectedDate, "EEEE, MMMM d")}
           </p>
           {availableSlots.length === 0 ? (
-            <p className="text-sm text-[#444444]">No slots available this day.</p>
+            <p className="text-sm text-muted-foreground">No slots available this day.</p>
           ) : (
             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
               {availableSlots.map((slot) => (
@@ -74,11 +74,11 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
                   className={cn(
                     "py-3 text-sm border transition-all duration-150",
                     !slot.available &&
-                      "border-[#1c1c1c] text-[#2a2a2a] cursor-not-allowed",
+                      "border-border text-muted-foreground cursor-not-allowed",
                     slot.available && selectedTime === slot.time &&
-                      "border-[#c4a35a] bg-[#c4a35a]/10 text-[#c4a35a]",
+                      "border-gold bg-gold/10 text-gold",
                     slot.available && selectedTime !== slot.time &&
-                      "border-[#242424] text-[#888888] hover:border-[#c4a35a]/50 hover:text-[#f0ece4] cursor-pointer"
+                      "border-border text-muted-foreground hover:border-gold/50 hover:text-foreground cursor-pointer"
                   )}
                 >
                   {slot.time}
@@ -90,8 +90,8 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
       )}
 
       {!selectedDate && (
-        <div className="mb-8 py-6 border border-dashed border-[#1c1c1c] text-center">
-          <p className="text-sm text-[#444444]">Select a date above to see available times</p>
+        <div className="mb-8 py-6 border border-dashed border-border text-center">
+          <p className="text-sm text-muted-foreground">Select a date above to see available times</p>
         </div>
       )}
 

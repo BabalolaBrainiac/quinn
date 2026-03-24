@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
@@ -62,14 +62,17 @@ export function CustomDesignForm() {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { serviceType: "studio" },
   });
 
-  const serviceType = watch("serviceType");
+  const serviceType = useWatch({ control, name: "serviceType" });
+  const placement = useWatch({ control, name: "placement" });
+  const size = useWatch({ control, name: "size" });
+  const colorPreference = useWatch({ control, name: "colorPreference" });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
@@ -98,19 +101,19 @@ export function CustomDesignForm() {
         className="text-center py-16"
       >
         <div className="flex justify-center mb-8">
-          <div className="w-20 h-20 border border-[#c4a35a]/30 flex items-center justify-center">
-            <CheckCircle2 className="h-10 w-10 text-[#c4a35a]" />
+          <div className="w-20 h-20 border border-gold/30 flex items-center justify-center">
+            <CheckCircle2 className="h-10 w-10 text-gold" />
           </div>
         </div>
         <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="h-px w-8 bg-[#c4a35a]" />
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">Received</span>
-          <div className="h-px w-8 bg-[#c4a35a]" />
+          <div className="h-px w-8 bg-gold" />
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold">Received</span>
+          <div className="h-px w-8 bg-gold" />
         </div>
-        <h2 className="font-display text-4xl font-light text-[#f0ece4] mb-4">
+        <h2 className="font-display text-4xl font-light text-foreground mb-4">
           Request submitted.
         </h2>
-        <p className="text-sm text-[#666666] leading-relaxed max-w-sm mx-auto">
+        <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
           Quinn will review your concept and get back to you within 24 hours with a
           personalised quote and payment link.
         </p>
@@ -122,7 +125,7 @@ export function CustomDesignForm() {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Contact info */}
       <div>
-        <h3 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+        <h3 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Your Details
         </h3>
         <div className="space-y-4">
@@ -152,8 +155,8 @@ export function CustomDesignForm() {
       </div>
 
       {/* Design info */}
-      <div className="border-t border-[#1c1c1c] pt-6">
-        <h3 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+      <div className="border-t border-border pt-6">
+        <h3 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Design Details
         </h3>
         <div className="space-y-4">
@@ -168,11 +171,11 @@ export function CustomDesignForm() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Placement */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium">
+              <label className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium">
                 Placement
               </label>
               <Select
-                value={watch("placement")}
+                value={placement}
                 onValueChange={(v) => setValue("placement", v)}
               >
                 <SelectTrigger error={errors.placement?.message}>
@@ -193,11 +196,11 @@ export function CustomDesignForm() {
 
             {/* Size */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium">
+              <label className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium">
                 Approximate Size
               </label>
               <Select
-                value={watch("size")}
+                value={size}
                 onValueChange={(v) => setValue("size", v)}
               >
                 <SelectTrigger error={errors.size?.message}>
@@ -219,11 +222,11 @@ export function CustomDesignForm() {
 
           {/* Color preference */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium">
+            <label className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium">
               Color Preference
             </label>
             <Select
-              value={watch("colorPreference")}
+              value={colorPreference}
               onValueChange={(v) => setValue("colorPreference", v)}
             >
               <SelectTrigger error={errors.colorPreference?.message}>
@@ -245,18 +248,18 @@ export function CustomDesignForm() {
       </div>
 
       {/* Reference images */}
-      <div className="border-t border-[#1c1c1c] pt-6">
-        <h3 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+      <div className="border-t border-border pt-6">
+        <h3 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Reference Images{" "}
-          <span className="normal-case tracking-normal text-[#444444]">(optional, max 5)</span>
+          <span className="normal-case tracking-normal text-muted-foreground">(optional, max 5)</span>
         </h3>
 
-        <label className="flex flex-col items-center justify-center gap-3 border border-dashed border-[#2a2a2a] p-8 cursor-pointer hover:border-[#c4a35a]/50 transition-colors">
-          <Upload className="h-6 w-6 text-[#444444]" />
-          <span className="text-xs text-[#666666] text-center">
+        <label className="flex flex-col items-center justify-center gap-3 border border-dashed border-border p-8 cursor-pointer hover:border-gold/50 transition-colors">
+          <Upload className="h-6 w-6 text-muted-foreground" />
+          <span className="text-xs text-muted-foreground text-center">
             Drop images here or click to upload
             <br />
-            <span className="text-[#444444]">JPG, PNG, WEBP up to 10MB each</span>
+            <span className="text-muted-foreground">JPG, PNG, WEBP up to 10MB each</span>
           </span>
           <input
             type="file"
@@ -272,18 +275,18 @@ export function CustomDesignForm() {
             {uploadedFiles.map((file, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between p-2.5 bg-[#0e0e0e] border border-[#1c1c1c]"
+                className="flex items-center justify-between p-2.5 bg-surface border border-border"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#c4a35a] rounded-full" />
-                  <span className="text-xs text-[#888888] truncate max-w-[200px]">
+                  <div className="w-2 h-2 bg-gold rounded-full" />
+                  <span className="text-xs text-muted-foreground truncate max-w-[200px]">
                     {file.name}
                   </span>
                 </div>
                 <button
                   type="button"
                   onClick={() => removeFile(i)}
-                  className="text-[#444444] hover:text-[#f0ece4] transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
@@ -294,8 +297,8 @@ export function CustomDesignForm() {
       </div>
 
       {/* Service type */}
-      <div className="border-t border-[#1c1c1c] pt-6">
-        <h3 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+      <div className="border-t border-border pt-6">
+        <h3 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Preferred Service
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -307,26 +310,26 @@ export function CustomDesignForm() {
               className={cn(
                 "p-4 border text-left transition-all duration-150",
                 serviceType === type
-                  ? "border-[#c4a35a] bg-[#c4a35a]/5"
-                  : "border-[#242424] hover:border-[#333333]"
+                  ? "border-gold bg-gold/5"
+                  : "border-border hover:border-[#333333]"
               )}
             >
               <div className="flex items-center gap-2 mb-2">
                 {type === "studio" ? (
-                  <MapPin className="h-4 w-4 text-[#c4a35a]" />
+                  <MapPin className="h-4 w-4 text-gold" />
                 ) : (
-                  <Home className="h-4 w-4 text-[#c4a35a]" />
+                  <Home className="h-4 w-4 text-gold" />
                 )}
                 <span
                   className={cn(
                     "text-xs tracking-widest uppercase",
-                    serviceType === type ? "text-[#c4a35a]" : "text-[#666666]"
+                    serviceType === type ? "text-gold" : "text-muted-foreground"
                   )}
                 >
                   {type === "studio" ? "Studio" : "Home Service"}
                 </span>
               </div>
-              <p className="text-xs text-[#444444]">
+              <p className="text-xs text-muted-foreground">
                 {type === "studio"
                   ? "Visit Quinn's Lagos studio"
                   : "+30% — Quinn comes to you"}
@@ -352,7 +355,7 @@ export function CustomDesignForm() {
             "Submit Custom Design Request"
           )}
         </Button>
-        <p className="text-xs text-center text-[#444444] mt-3">
+        <p className="text-xs text-center text-muted-foreground mt-3">
           You&apos;ll receive a quote via email within 24 hours. No payment required now.
         </p>
       </div>

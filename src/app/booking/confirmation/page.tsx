@@ -10,7 +10,7 @@ export default function ConfirmationPage() {
       <main className="pt-16 min-h-screen flex items-center justify-center px-6">
         <Suspense
           fallback={
-            <div className="text-center text-[#666666]">Loading confirmation...</div>
+            <div className="text-center text-muted-foreground">Loading confirmation...</div>
           }
         >
           <ConfirmationContent />

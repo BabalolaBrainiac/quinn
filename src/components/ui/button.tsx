@@ -11,15 +11,15 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[#c4a35a] text-[#080808] hover:bg-[#dfc07a] active:scale-[0.98]",
+          "bg-gold text-background hover:bg-[#dfc07a] active:scale-[0.98]",
         outline:
-          "border border-[#c4a35a] text-[#c4a35a] hover:bg-[#c4a35a] hover:text-[#080808] active:scale-[0.98]",
+          "border border-gold text-gold hover:bg-gold hover:text-background active:scale-[0.98]",
         ghost:
-          "text-[#f0ece4] hover:text-[#c4a35a] hover:bg-[#1a1a1a] active:scale-[0.98]",
+          "text-foreground hover:text-gold hover:bg-[#1a1a1a] active:scale-[0.98]",
         destructive:
           "bg-red-900/20 border border-red-700 text-red-400 hover:bg-red-900/40",
         muted:
-          "bg-[#1a1a1a] text-[#888888] hover:bg-[#242424] hover:text-[#f0ece4]",
+          "bg-[#1a1a1a] text-muted-foreground hover:bg-[#242424] hover:text-foreground",
       },
       size: {
         sm: "h-8 px-4 text-xs",

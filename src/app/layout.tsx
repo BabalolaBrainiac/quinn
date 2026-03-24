@@ -39,7 +39,7 @@ export default function RootLayout({
       className={`${inter.variable} ${cormorant.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-screen bg-[#080808] text-[#f0ece4] antialiased">
+      <body className="min-h-screen bg-background text-foreground antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

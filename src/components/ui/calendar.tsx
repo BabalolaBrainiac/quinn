@@ -64,19 +64,19 @@ export function Calendar({
       <div className="flex items-center justify-between mb-5">
         <button
           onClick={() => setViewDate((d) => subMonths(d, 1))}
-          className="w-8 h-8 flex items-center justify-center text-[#666666] hover:text-[#f0ece4] hover:bg-[#1a1a1a] transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-[#1a1a1a] transition-colors"
           aria-label="Previous month"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
 
-        <span className="text-sm tracking-[0.15em] uppercase text-[#f0ece4] font-medium">
+        <span className="text-sm tracking-[0.15em] uppercase text-foreground font-medium">
           {format(viewDate, "MMMM yyyy")}
         </span>
 
         <button
           onClick={() => setViewDate((d) => addMonths(d, 1))}
-          className="w-8 h-8 flex items-center justify-center text-[#666666] hover:text-[#f0ece4] hover:bg-[#1a1a1a] transition-colors"
+          className="w-8 h-8 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-[#1a1a1a] transition-colors"
           aria-label="Next month"
         >
           <ChevronRight className="h-4 w-4" />
@@ -88,7 +88,7 @@ export function Calendar({
         {WEEKDAYS.map((d) => (
           <div
             key={d}
-            className="h-8 flex items-center justify-center text-[10px] tracking-[0.12em] uppercase text-[#444444]"
+            className="h-8 flex items-center justify-center text-[10px] tracking-[0.12em] uppercase text-muted-foreground"
           >
             {d}
           </div>
@@ -122,19 +122,19 @@ export function Calendar({
                   "w-9 h-9 flex items-center justify-center text-sm transition-all duration-150 relative",
                   // Base
                   !isDisabled && !isSelected &&
-                    "hover:bg-[#1a1a1a] hover:text-[#f0ece4] cursor-pointer",
+                    "hover:bg-[#1a1a1a] hover:text-foreground cursor-pointer",
                   // Selected
                   isSelected &&
-                    "bg-[#c4a35a] text-[#080808] font-medium cursor-pointer",
+                    "bg-gold text-background font-medium cursor-pointer",
                   // Today (not selected)
                   isToday && !isSelected &&
-                    "text-[#f0ece4] font-medium",
+                    "text-foreground font-medium",
                   // Disabled
                   isDisabled &&
-                    "text-[#2a2a2a] cursor-not-allowed",
+                    "text-muted-foreground cursor-not-allowed",
                   // Available (not disabled, not selected)
                   !isDisabled && !isSelected && available &&
-                    "text-[#f0ece4]",
+                    "text-foreground",
                   // Not current month
                   !isCurrentMonth && "opacity-20"
                 )}
@@ -144,10 +144,10 @@ export function Calendar({
 
               {/* Available dot indicator */}
               {available && !isPast && !isSelected && (
-                <div className="w-1 h-1 rounded-full bg-[#c4a35a]/60" />
+                <div className="w-1 h-1 rounded-full bg-gold/60" />
               )}
               {isSelected && (
-                <div className="w-1 h-1 rounded-full bg-[#c4a35a]" />
+                <div className="w-1 h-1 rounded-full bg-gold" />
               )}
               {(isDisabled || !available) && (
                 <div className="w-1 h-1" /> // spacer to keep grid aligned
@@ -158,20 +158,20 @@ export function Calendar({
       </div>
 
       {/* Legend */}
-      <div className="flex items-center justify-center gap-6 mt-5 pt-4 border-t border-[#1c1c1c]">
+      <div className="flex items-center justify-center gap-6 mt-5 pt-4 border-t border-border">
         <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#c4a35a]" />
-          <span className="text-[10px] tracking-[0.1em] uppercase text-[#666666]">Available</span>
+          <div className="w-1.5 h-1.5 rounded-full bg-gold" />
+          <span className="text-[10px] tracking-[0.1em] uppercase text-muted-foreground">Available</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-7 h-5 bg-[#c4a35a] flex items-center justify-center">
-            <span className="text-[10px] text-[#080808] font-medium">d</span>
+          <div className="w-7 h-5 bg-gold flex items-center justify-center">
+            <span className="text-[10px] text-background font-medium">d</span>
           </div>
-          <span className="text-[10px] tracking-[0.1em] uppercase text-[#666666]">Selected</span>
+          <span className="text-[10px] tracking-[0.1em] uppercase text-muted-foreground">Selected</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-1.5 h-1.5 rounded-full bg-[#2a2a2a]" />
-          <span className="text-[10px] tracking-[0.1em] uppercase text-[#444444]">Unavailable</span>
+          <span className="text-[10px] tracking-[0.1em] uppercase text-muted-foreground">Unavailable</span>
         </div>
       </div>
     </div>

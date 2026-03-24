@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
@@ -45,7 +45,7 @@ export function StepDetails({ formData, onNext, onBack }: StepDetailsProps) {
     register,
     handleSubmit,
     setValue,
-    watch,
+    control,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -59,6 +59,9 @@ export function StepDetails({ formData, onNext, onBack }: StepDetailsProps) {
     },
   });
 
+  const placement = useWatch({ control, name: "placement" });
+  const size = useWatch({ control, name: "size" });
+
   const onSubmit = (data: FormValues) => {
     onNext(data);
   };
@@ -66,10 +69,10 @@ export function StepDetails({ formData, onNext, onBack }: StepDetailsProps) {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-8">
-        <h2 className="font-display text-4xl font-light text-[#f0ece4] mb-2">
+        <h2 className="font-display text-4xl font-light text-foreground mb-2">
           Your details
         </h2>
-        <p className="text-sm text-[#666666]">
+        <p className="text-sm text-muted-foreground">
           We&apos;ll use this to confirm your booking and send aftercare instructions.
         </p>
       </div>
@@ -100,11 +103,11 @@ export function StepDetails({ formData, onNext, onBack }: StepDetailsProps) {
 
         {/* Placement */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium">
+          <label className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium">
             Placement
           </label>
           <Select
-            value={watch("placement")}
+            value={placement}
             onValueChange={(v) => setValue("placement", v)}
           >
             <SelectTrigger error={errors.placement?.message}>
@@ -125,11 +128,11 @@ export function StepDetails({ formData, onNext, onBack }: StepDetailsProps) {
 
         {/* Size */}
         <div className="flex flex-col gap-1.5">
-          <label className="text-xs tracking-[0.1em] uppercase text-[#888888] font-medium">
+          <label className="text-xs tracking-[0.1em] uppercase text-muted-foreground font-medium">
             Approximate Size
           </label>
           <Select
-            value={watch("size")}
+            value={size}
             onValueChange={(v) => setValue("size", v)}
           >
             <SelectTrigger error={errors.size?.message}>

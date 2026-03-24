@@ -34,8 +34,8 @@ export function AdminNav() {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 text-xs tracking-wide transition-colors",
                 active
-                  ? "text-[#c4a35a] bg-[#c4a35a]/8"
-                  : "text-[#666666] hover:text-[#f0ece4] hover:bg-[#111111]"
+                  ? "text-gold bg-gold/8"
+                  : "text-muted-foreground hover:text-foreground hover:bg-surface"
               )}
             >
               <link.icon className="h-3.5 w-3.5" />

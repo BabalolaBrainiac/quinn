@@ -23,13 +23,13 @@ function FeaturedCard({ design, index }: { design: Design; index: number }) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
     >
       <Link href={`/designs?selected=${design.id}`} className="group block">
-        <div className="relative overflow-hidden aspect-[3/4] bg-[#111111]">
+        <div className="relative overflow-hidden aspect-[3/4] bg-surface">
           {imgError ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#111111]">
-              <div className="w-10 h-10 border border-[#2a2a2a] flex items-center justify-center">
-                <span className="text-[#2a2a2a] text-lg font-display">Q</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface">
+              <div className="w-10 h-10 border border-border flex items-center justify-center">
+                <span className="text-muted-foreground text-lg font-display">Q</span>
               </div>
-              <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] capitalize">{design.category}</span>
+              <span className="text-[10px] tracking-widest uppercase text-muted-foreground capitalize">{design.category}</span>
             </div>
           ) : (
             <Image
@@ -43,13 +43,13 @@ function FeaturedCard({ design, index }: { design: Design; index: number }) {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-            <div className="text-[10px] tracking-[0.15em] uppercase text-[#c4a35a] mb-1">
+            <div className="text-[10px] tracking-[0.15em] uppercase text-gold mb-1">
               {design.category}
             </div>
-            <div className="font-display text-lg font-light text-[#f0ece4]">
+            <div className="font-display text-lg font-light text-foreground">
               {design.title}
             </div>
-            <div className="text-xs text-[#888888] mt-1">
+            <div className="text-xs text-muted-foreground mt-1">
               from {formatNaira(design.basePrice)}
             </div>
           </div>
@@ -63,11 +63,11 @@ export function FeaturedDesigns() {
   return (
     <section className="py-28 px-6 max-w-7xl mx-auto">
       <div className="flex items-center gap-4 mb-4">
-        <div className="h-px w-8 bg-[#c4a35a]" />
-        <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">Signature Work</span>
+        <div className="h-px w-8 bg-gold" />
+        <span className="text-[10px] tracking-[0.3em] uppercase text-gold">Signature Work</span>
       </div>
       <div className="flex items-end justify-between mb-12 flex-wrap gap-6">
-        <h2 className="font-display text-5xl md:text-6xl font-light text-[#f0ece4]">
+        <h2 className="font-display text-5xl md:text-6xl font-light text-foreground">
           Featured designs
         </h2>
         <Button asChild variant="ghost" size="sm">

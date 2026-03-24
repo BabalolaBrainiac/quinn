@@ -55,29 +55,29 @@ export default function AdminQuotesPage() {
   return (
     <div className="p-8">
       <div className="mb-6">
-        <h1 className="font-display text-4xl font-light text-[#f0ece4]">Custom Quotes</h1>
-        <p className="text-sm text-[#666666] mt-1">
+        <h1 className="font-display text-4xl font-light text-foreground">Custom Quotes</h1>
+        <p className="text-sm text-muted-foreground mt-1">
           Review custom design requests and send quotes to clients.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Requests list */}
-        <div className="border border-[#1c1c1c] overflow-hidden">
+        <div className="border border-border overflow-hidden">
           {requests.map((req) => (
             <div
               key={req.id}
-              className={`border-b border-[#1c1c1c] last:border-0 p-4 cursor-pointer transition-colors ${
-                selected?.id === req.id ? "bg-[#111111]" : "hover:bg-[#0e0e0e]"
+              className={`border-b border-border last:border-0 p-4 cursor-pointer transition-colors ${
+                selected?.id === req.id ? "bg-surface" : "hover:bg-surface"
               }`}
               onClick={() => handleSelectRequest(req)}
             >
               <div className="flex items-start justify-between gap-2 mb-2">
-                <p className="text-sm text-[#f0ece4] font-medium">{req.clientName}</p>
+                <p className="text-sm text-foreground font-medium">{req.clientName}</p>
                 <Badge variant={statusVariant[req.status]}>{req.status}</Badge>
               </div>
-              <p className="text-xs text-[#666666] line-clamp-2">{req.description}</p>
-              <div className="flex items-center gap-3 mt-2 text-[10px] text-[#444444]">
+              <p className="text-xs text-muted-foreground line-clamp-2">{req.description}</p>
+              <div className="flex items-center gap-3 mt-2 text-[10px] text-muted-foreground">
                 <span>{req.placement}</span>
                 <span>·</span>
                 <span>{req.size}</span>
@@ -89,25 +89,25 @@ export default function AdminQuotesPage() {
         </div>
 
         {/* Detail + quote panel */}
-        <div className="lg:col-span-2 border border-[#1c1c1c] p-6">
+        <div className="lg:col-span-2 border border-border p-6">
           {selected ? (
             <div>
               <div className="flex items-start justify-between mb-5">
                 <div>
-                  <h3 className="font-display text-2xl font-light text-[#f0ece4]">
+                  <h3 className="font-display text-2xl font-light text-foreground">
                     {selected.clientName}
                   </h3>
                   <div className="flex items-center gap-3 mt-1">
                     <a
                       href={`mailto:${selected.clientEmail}`}
-                      className="flex items-center gap-1.5 text-xs text-[#666666] hover:text-[#c4a35a] transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-gold transition-colors"
                     >
                       <Mail className="h-3 w-3" />
                       {selected.clientEmail}
                     </a>
                     <a
                       href={`tel:${selected.clientPhone}`}
-                      className="flex items-center gap-1.5 text-xs text-[#666666] hover:text-[#c4a35a] transition-colors"
+                      className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-gold transition-colors"
                     >
                       <Phone className="h-3 w-3" />
                       {selected.clientPhone}
@@ -124,19 +124,19 @@ export default function AdminQuotesPage() {
                   { label: "Size", value: selected.size },
                   { label: "Color", value: selected.colorPreference },
                 ].map(({ label, value }) => (
-                  <div key={label} className="p-3 bg-[#0e0e0e] border border-[#1c1c1c]">
-                    <p className="text-[#444444] mb-1 uppercase tracking-wider text-[9px]">{label}</p>
-                    <p className="text-[#f0ece4]">{value}</p>
+                  <div key={label} className="p-3 bg-surface border border-border">
+                    <p className="text-muted-foreground mb-1 uppercase tracking-wider text-[9px]">{label}</p>
+                    <p className="text-foreground">{value}</p>
                   </div>
                 ))}
               </div>
 
               {/* Service type */}
-              <div className="flex items-center gap-2 mb-5 text-xs text-[#888888]">
+              <div className="flex items-center gap-2 mb-5 text-xs text-muted-foreground">
                 {selected.serviceType === "home" ? (
-                  <Home className="h-3.5 w-3.5 text-[#c4a35a]" />
+                  <Home className="h-3.5 w-3.5 text-gold" />
                 ) : (
-                  <MapPin className="h-3.5 w-3.5 text-[#c4a35a]" />
+                  <MapPin className="h-3.5 w-3.5 text-gold" />
                 )}
                 <span>
                   {selected.serviceType === "home" ? "Home Service" : "Studio Visit"}
@@ -145,17 +145,17 @@ export default function AdminQuotesPage() {
               </div>
 
               {/* Description */}
-              <div className="p-4 bg-[#0e0e0e] border border-[#1c1c1c] mb-5">
-                <p className="text-[10px] tracking-widest uppercase text-[#444444] mb-2">
+              <div className="p-4 bg-surface border border-border mb-5">
+                <p className="text-[10px] tracking-widest uppercase text-muted-foreground mb-2">
                   Client&apos;s Description
                 </p>
-                <p className="text-sm text-[#888888] leading-relaxed">{selected.description}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{selected.description}</p>
               </div>
 
               {/* Quote form */}
               {selected.status === "pending" || selected.status === "quoted" ? (
-                <div className="border-t border-[#1c1c1c] pt-5 space-y-4">
-                  <h4 className="text-xs tracking-[0.15em] uppercase text-[#888888]">
+                <div className="border-t border-border pt-5 space-y-4">
+                  <h4 className="text-xs tracking-[0.15em] uppercase text-muted-foreground">
                     Send Quote
                   </h4>
 
@@ -168,7 +168,7 @@ export default function AdminQuotesPage() {
                       onChange={(e) => setQuoteAmount(e.target.value)}
                     />
                     <div className="flex items-end pb-0">
-                      <div className="text-xs text-[#666666] pb-3">
+                      <div className="text-xs text-muted-foreground pb-3">
                         Client will receive a payment link via email.
                       </div>
                     </div>
@@ -199,12 +199,12 @@ export default function AdminQuotesPage() {
                   </Button>
                 </div>
               ) : (
-                <div className="border-t border-[#1c1c1c] pt-5">
+                <div className="border-t border-border pt-5">
                   <Badge variant={statusVariant[selected.status]} className="text-sm px-3 py-1">
                     Quote {selected.status}
                   </Badge>
                   {selected.quotedAmount && (
-                    <p className="text-sm text-[#c4a35a] mt-2">
+                    <p className="text-sm text-gold mt-2">
                       Amount: {formatNaira(selected.quotedAmount)}
                     </p>
                   )}
@@ -212,7 +212,7 @@ export default function AdminQuotesPage() {
               )}
             </div>
           ) : (
-            <div className="h-full flex items-center justify-center text-sm text-[#444444]">
+            <div className="h-full flex items-center justify-center text-sm text-muted-foreground">
               Select a request to review and quote
             </div>
           )}

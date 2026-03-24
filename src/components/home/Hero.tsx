@@ -36,8 +36,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="flex items-center gap-3 mb-8"
           >
-            <div className="h-px w-8 bg-[#c4a35a]" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a] font-medium">
+            <div className="h-px w-8 bg-gold" />
+            <span className="text-[10px] tracking-[0.3em] uppercase text-gold font-medium">
               Lagos, Nigeria
             </span>
           </motion.div>
@@ -47,11 +47,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="font-display text-6xl md:text-8xl font-light text-[#f0ece4] leading-[0.95] mb-6"
+            className="font-display text-6xl md:text-8xl font-light text-foreground leading-[0.95] mb-6"
           >
             Art that
             <br />
-            <em className="text-[#c4a35a] not-italic">lives</em>
+            <em className="text-gold not-italic">lives</em>
             <br />
             on you.
           </motion.h1>
@@ -60,7 +60,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-base text-[#888888] leading-relaxed mb-10 max-w-md"
+            className="text-base text-muted-foreground leading-relaxed mb-10 max-w-md"
           >
             Bespoke tattoo artistry crafted for those who wear their story.
             Studio sessions in Lagos or home service — designed around you.
@@ -87,7 +87,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            className="flex items-center gap-10 mt-16 pt-10 border-t border-[#1c1c1c]"
+            className="flex items-center gap-10 mt-16 pt-10 border-t border-border"
           >
             {[
               { value: "500+", label: "Pieces crafted" },
@@ -95,8 +95,8 @@ export function Hero() {
               { value: "6+", label: "Years of mastery" },
             ].map((stat) => (
               <div key={stat.label}>
-                <div className="font-display text-2xl text-[#f0ece4]">{stat.value}</div>
-                <div className="text-[10px] tracking-[0.15em] uppercase text-[#666666] mt-0.5">
+                <div className="font-display text-2xl text-foreground">{stat.value}</div>
+                <div className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground mt-0.5">
                   {stat.label}
                 </div>
               </div>
@@ -112,7 +112,7 @@ export function Hero() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-[9px] tracking-[0.3em] uppercase text-[#444444]">Scroll</span>
+        <span className="text-[9px] tracking-[0.3em] uppercase text-muted-foreground">Scroll</span>
         <div className="h-8 w-px bg-gradient-to-b from-[#444444] to-transparent" />
       </motion.div>
     </section>

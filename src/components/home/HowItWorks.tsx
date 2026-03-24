@@ -38,14 +38,14 @@ export function HowItWorks() {
   return (
     <section className="py-28 px-6 max-w-7xl mx-auto">
       <div className="flex items-center gap-4 mb-4">
-        <div className="h-px w-8 bg-[#c4a35a]" />
-        <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">Process</span>
+        <div className="h-px w-8 bg-gold" />
+        <span className="text-[10px] tracking-[0.3em] uppercase text-gold">Process</span>
       </div>
       <div className="flex items-end justify-between mb-16 flex-wrap gap-6">
-        <h2 className="font-display text-5xl md:text-6xl font-light text-[#f0ece4]">
+        <h2 className="font-display text-5xl md:text-6xl font-light text-foreground">
           How it works
         </h2>
-        <p className="text-sm text-[#666666] max-w-xs leading-relaxed">
+        <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
           From concept to confirmation in four simple steps.
         </p>
       </div>
@@ -58,18 +58,18 @@ export function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.12 }}
-            className="bg-[#080808] p-8 group hover:bg-[#0e0e0e] transition-colors duration-300"
+            className="bg-background p-8 group hover:bg-surface transition-colors duration-300"
           >
             <div className="flex items-start justify-between mb-8">
               <span className="font-display text-5xl font-light text-[#1c1c1c] group-hover:text-[#242424] transition-colors">
                 {step.number}
               </span>
-              <step.icon className="h-5 w-5 text-[#c4a35a] opacity-80" />
+              <step.icon className="h-5 w-5 text-gold opacity-80" />
             </div>
-            <h3 className="font-display text-xl font-light text-[#f0ece4] mb-3">
+            <h3 className="font-display text-xl font-light text-foreground mb-3">
               {step.title}
             </h3>
-            <p className="text-sm text-[#666666] leading-relaxed">{step.description}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
           </motion.div>
         ))}
       </div>

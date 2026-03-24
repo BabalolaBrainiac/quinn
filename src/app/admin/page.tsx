@@ -40,8 +40,8 @@ export default function AdminDashboard() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="font-display text-4xl font-light text-[#f0ece4]">Dashboard</h1>
-        <p className="text-sm text-[#666666] mt-1">Quinn&apos;s Artistry — Admin Overview</p>
+        <h1 className="font-display text-4xl font-light text-foreground">Dashboard</h1>
+        <p className="text-sm text-muted-foreground mt-1">Quinn&apos;s Artistry — Admin Overview</p>
       </div>
 
       {/* Stats */}
@@ -49,32 +49,32 @@ export default function AdminDashboard() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-[#111111] border border-[#1c1c1c] p-5"
+            className="bg-surface border border-border p-5"
           >
-            <p className="text-[10px] tracking-[0.15em] uppercase text-[#666666] mb-2">
+            <p className="text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-2">
               {stat.label}
             </p>
-            <p className="font-display text-3xl font-light text-[#f0ece4] mb-1">
+            <p className="font-display text-3xl font-light text-foreground mb-1">
               {stat.value}
             </p>
-            <p className="text-[11px] text-[#444444]">{stat.sub}</p>
+            <p className="text-[11px] text-muted-foreground">{stat.sub}</p>
           </div>
         ))}
       </div>
 
       {/* Recent bookings */}
       <div className="mb-8">
-        <h2 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+        <h2 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Recent Bookings
         </h2>
-        <div className="border border-[#1c1c1c] overflow-hidden">
+        <div className="border border-border overflow-hidden">
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-[#1c1c1c]">
+              <tr className="border-b border-border">
                 {["Client", "Design", "Service", "Date", "Amount", "Status"].map((h) => (
                   <th
                     key={h}
-                    className="text-left px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-[#444444] font-medium"
+                    className="text-left px-4 py-3 text-[10px] tracking-[0.15em] uppercase text-muted-foreground font-medium"
                   >
                     {h}
                   </th>
@@ -85,22 +85,22 @@ export default function AdminDashboard() {
               {mockBookings.map((booking) => (
                 <tr
                   key={booking.id}
-                  className="border-b border-[#1c1c1c] last:border-0 hover:bg-[#0e0e0e] transition-colors"
+                  className="border-b border-border last:border-0 hover:bg-surface transition-colors"
                 >
                   <td className="px-4 py-3">
-                    <div className="text-[#f0ece4] text-sm">{booking.clientName}</div>
-                    <div className="text-[10px] text-[#666666]">{booking.clientEmail}</div>
+                    <div className="text-foreground text-sm">{booking.clientName}</div>
+                    <div className="text-[10px] text-muted-foreground">{booking.clientEmail}</div>
                   </td>
-                  <td className="px-4 py-3 text-[#888888] text-xs">{booking.designTitle}</td>
+                  <td className="px-4 py-3 text-muted-foreground text-xs">{booking.designTitle}</td>
                   <td className="px-4 py-3">
                     <Badge variant={booking.serviceType === "home" ? "gold" : "muted"}>
                       {booking.serviceType}
                     </Badge>
                   </td>
-                  <td className="px-4 py-3 text-[#888888] text-xs">
+                  <td className="px-4 py-3 text-muted-foreground text-xs">
                     {formatShortDate(booking.date)} · {booking.time}
                   </td>
-                  <td className="px-4 py-3 text-[#c4a35a] text-sm">
+                  <td className="px-4 py-3 text-gold text-sm">
                     {formatNaira(booking.amount)}
                   </td>
                   <td className="px-4 py-3">
@@ -117,27 +117,27 @@ export default function AdminDashboard() {
 
       {/* Pending custom requests */}
       <div>
-        <h2 className="text-xs tracking-[0.2em] uppercase text-[#888888] mb-4">
+        <h2 className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
           Pending Custom Requests
         </h2>
-        <div className="border border-[#1c1c1c] overflow-hidden">
+        <div className="border border-border overflow-hidden">
           {mockCustomRequests.filter((r) => r.status === "pending").length === 0 ? (
-            <p className="px-4 py-6 text-sm text-[#444444]">No pending requests.</p>
+            <p className="px-4 py-6 text-sm text-muted-foreground">No pending requests.</p>
           ) : (
             mockCustomRequests
               .filter((r) => r.status === "pending")
               .map((req) => (
                 <div
                   key={req.id}
-                  className="border-b border-[#1c1c1c] last:border-0 px-4 py-4"
+                  className="border-b border-border last:border-0 px-4 py-4"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-sm text-[#f0ece4]">{req.clientName}</p>
-                      <p className="text-[11px] text-[#666666] mt-0.5">
+                      <p className="text-sm text-foreground">{req.clientName}</p>
+                      <p className="text-[11px] text-muted-foreground mt-0.5">
                         {req.placement} · {req.size} · {req.colorPreference}
                       </p>
-                      <p className="text-xs text-[#888888] mt-2 max-w-md leading-relaxed line-clamp-2">
+                      <p className="text-xs text-muted-foreground mt-2 max-w-md leading-relaxed line-clamp-2">
                         {req.description}
                       </p>
                     </div>

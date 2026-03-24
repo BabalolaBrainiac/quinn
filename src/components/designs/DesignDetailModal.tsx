@@ -31,13 +31,13 @@ export function DesignDetailModal({ design, open, onClose }: DesignDetailModalPr
       <DialogContent className="max-w-2xl p-0 overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Image */}
-          <div className="relative aspect-[3/4] md:aspect-auto min-h-64 bg-[#111111]">
+          <div className="relative aspect-[3/4] md:aspect-auto min-h-64 bg-surface">
             {imgError ? (
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="w-12 h-12 border border-[#2a2a2a] flex items-center justify-center">
-                  <span className="text-[#2a2a2a] text-xl font-display">Q</span>
+                <div className="w-12 h-12 border border-border flex items-center justify-center">
+                  <span className="text-muted-foreground text-xl font-display">Q</span>
                 </div>
-                <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] capitalize">{design.category}</span>
+                <span className="text-[10px] tracking-widest uppercase text-muted-foreground capitalize">{design.category}</span>
               </div>
             ) : (
               <Image
@@ -54,13 +54,13 @@ export function DesignDetailModal({ design, open, onClose }: DesignDetailModalPr
           {/* Details */}
           <div className="p-6 flex flex-col">
             <DialogHeader className="mb-0">
-              <div className="text-[10px] tracking-[0.2em] uppercase text-[#c4a35a] mb-2 capitalize">
+              <div className="text-[10px] tracking-[0.2em] uppercase text-gold mb-2 capitalize">
                 {design.category}
               </div>
               <DialogTitle className="text-2xl">{design.title}</DialogTitle>
             </DialogHeader>
 
-            <p className="text-sm text-[#666666] leading-relaxed mt-3 mb-5">
+            <p className="text-sm text-muted-foreground leading-relaxed mt-3 mb-5">
               {design.description}
             </p>
 
@@ -75,18 +75,18 @@ export function DesignDetailModal({ design, open, onClose }: DesignDetailModalPr
             </div>
 
             {/* Pricing */}
-            <div className="border border-[#242424] p-4 mb-5 space-y-2">
+            <div className="border border-border p-4 mb-5 space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-[#888888]">Studio session</span>
-                <span className="text-[#f0ece4]">{formatNaira(design.basePrice)}</span>
+                <span className="text-muted-foreground">Studio session</span>
+                <span className="text-foreground">{formatNaira(design.basePrice)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-[#888888]">Home service (+30%)</span>
-                <span className="text-[#c4a35a]">{formatNaira(homePrice)}</span>
+                <span className="text-muted-foreground">Home service (+30%)</span>
+                <span className="text-gold">{formatNaira(homePrice)}</span>
               </div>
-              <div className="flex items-center gap-1.5 pt-1 border-t border-[#1c1c1c]">
-                <Clock className="h-3 w-3 text-[#444444]" />
-                <span className="text-xs text-[#666666]">
+              <div className="flex items-center gap-1.5 pt-1 border-t border-border">
+                <Clock className="h-3 w-3 text-muted-foreground" />
+                <span className="text-xs text-muted-foreground">
                   Est. {design.estimatedHours} hour{design.estimatedHours !== 1 ? "s" : ""}
                 </span>
               </div>

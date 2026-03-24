@@ -39,13 +39,13 @@ export function ServiceTypes() {
   const handleImgError = (type: string) => setImgErrors((prev) => ({ ...prev, [type]: true }));
 
   return (
-    <section className="py-28 bg-[#080808]">
+    <section className="py-28 bg-background">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-8 bg-[#c4a35a]" />
-          <span className="text-[10px] tracking-[0.3em] uppercase text-[#c4a35a]">Services</span>
+          <div className="h-px w-8 bg-gold" />
+          <span className="text-[10px] tracking-[0.3em] uppercase text-gold">Services</span>
         </div>
-        <h2 className="font-display text-5xl md:text-6xl font-light text-[#f0ece4] mb-16">
+        <h2 className="font-display text-5xl md:text-6xl font-light text-foreground mb-16">
           Choose your experience
         </h2>
 
@@ -57,10 +57,10 @@ export function ServiceTypes() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: i * 0.15 }}
-              className="relative group overflow-hidden bg-[#111111] border border-[#1c1c1c]"
+              className="relative group overflow-hidden bg-surface border border-border"
             >
               {/* Image */}
-              <div className="relative h-56 overflow-hidden bg-[#0a0a0a]">
+              <div className="relative h-56 overflow-hidden bg-surface">
                 {!imgErrors[service.type] && (
                   <Image
                     src={service.image}
@@ -77,20 +77,20 @@ export function ServiceTypes() {
               {/* Content */}
               <div className="p-8 pt-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <service.icon className="h-4 w-4 text-[#c4a35a]" />
-                  <span className="text-[10px] tracking-[0.2em] uppercase text-[#c4a35a]">
+                  <service.icon className="h-4 w-4 text-gold" />
+                  <span className="text-[10px] tracking-[0.2em] uppercase text-gold">
                     {service.type}
                   </span>
                 </div>
-                <h3 className="font-display text-3xl font-light text-[#f0ece4] mb-2">
+                <h3 className="font-display text-3xl font-light text-foreground mb-2">
                   {service.tagline}
                 </h3>
-                <p className="text-sm text-[#666666] leading-relaxed mb-4">
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <p className="text-xs text-[#444444] mb-6">{service.detail}</p>
+                <p className="text-xs text-muted-foreground mb-6">{service.detail}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs tracking-[0.1em] text-[#888888]">
+                  <span className="text-xs tracking-[0.1em] text-muted-foreground">
                     {service.price}
                   </span>
                   <Button asChild size="sm">
