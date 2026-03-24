@@ -7,7 +7,6 @@ import { ArrowRight } from "lucide-react";
 import { Design } from "@/lib/types";
 import { formatNaira } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { DesignDetailModal } from "./DesignDetailModal";
 
 interface DesignCardProps {
@@ -17,6 +16,7 @@ interface DesignCardProps {
 
 export function DesignCard({ design, index = 0 }: DesignCardProps) {
   const [open, setOpen] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <>
@@ -29,13 +29,23 @@ export function DesignCard({ design, index = 0 }: DesignCardProps) {
       >
         {/* Image */}
         <div className="relative overflow-hidden bg-[#111111] aspect-[3/4]">
-          <Image
-            src={design.imageUrl}
-            alt={design.title}
-            fill
-            className="object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-            unoptimized
-          />
+          {imgError ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#111111]">
+              <div className="w-10 h-10 border border-[#2a2a2a] flex items-center justify-center">
+                <span className="text-[#2a2a2a] text-lg font-display">Q</span>
+              </div>
+              <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] capitalize">{design.category}</span>
+            </div>
+          ) : (
+            <Image
+              src={design.imageUrl}
+              alt={design.title}
+              fill
+              className="object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              unoptimized
+              onError={() => setImgError(true)}
+            />
+          )}
 
           {/* Hover overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808]/90 via-[#080808]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />

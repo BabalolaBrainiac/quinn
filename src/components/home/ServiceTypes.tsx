@@ -14,7 +14,7 @@ const services = [
     description:
       "Visit Quinn's private studio in Lagos. A controlled, sterile environment with everything needed for a flawless session. The classic experience.",
     detail: "Includes full setup, aftercare kit & certificate of authenticity.",
-    image: "https://images.unsplash.com/photo-1565688534245-05d6b5be184a?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1561494785-dd34f09b0d5e?w=800&q=80",
     price: "Standard rates apply",
     href: "/book?service=studio",
     cta: "Book Studio Session",
@@ -26,7 +26,7 @@ const services = [
     description:
       "Quinn brings the studio to your location anywhere in Lagos. Premium convenience with zero compromise on hygiene or artistry.",
     detail: "30% service surcharge applies. Min. notice: 48hrs. Lagos only.",
-    image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800&q=80",
     price: "+30% surcharge",
     href: "/book?service=home",
     cta: "Book Home Service",

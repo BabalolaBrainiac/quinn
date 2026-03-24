@@ -4,7 +4,6 @@ import { useState } from "react";
 import { mockBookings } from "@/lib/data";
 import { formatNaira, formatShortDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Booking, BookingStatus } from "@/lib/types";
 import { Phone, Mail } from "lucide-react";
 

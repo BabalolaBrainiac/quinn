@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { StepDesign } from "./StepDesign";
@@ -19,33 +19,32 @@ const STEPS = [
   { id: 5, label: "Payment" },
 ];
 
+function getInitialState(searchParams: URLSearchParams): {
+  step: number;
+  formData: Partial<BookingFormData>;
+} {
+  const designId = searchParams.get("design");
+  const service = searchParams.get("service");
+  const formData: Partial<BookingFormData> = {};
+
+  if (designId && getDesignById(designId)) formData.designId = designId;
+  if (service === "studio" || service === "home") formData.serviceType = service;
+
+  let step = 1;
+  if (formData.designId && formData.serviceType) step = 3;
+  else if (formData.designId) step = 2;
+
+  return { step, formData };
+}
+
 export function BookingFlow() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<Partial<BookingFormData>>({});
 
-  // Pre-fill from URL params
-  useEffect(() => {
-    const designId = searchParams.get("design");
-    const service = searchParams.get("service");
-
-    const updates: Partial<BookingFormData> = {};
-
-    if (designId && getDesignById(designId)) {
-      updates.designId = designId;
-      setStep(2); // Skip to service selection
-    }
-
-    if (service === "studio" || service === "home") {
-      updates.serviceType = service;
-      if (designId) setStep(3);
-    }
-
-    if (Object.keys(updates).length > 0) {
-      setFormData((prev) => ({ ...prev, ...updates }));
-    }
-  }, [searchParams]);
+  const [step, setStep] = useState(() => getInitialState(searchParams).step);
+  const [formData, setFormData] = useState<Partial<BookingFormData>>(
+    () => getInitialState(searchParams).formData
+  );
 
   const next = (data: Partial<BookingFormData>) => {
     setFormData((prev) => ({ ...prev, ...data }));

@@ -1,8 +1,6 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import { ConfirmationContent } from "./ConfirmationContent";
 
 export default function ConfirmationPage() {

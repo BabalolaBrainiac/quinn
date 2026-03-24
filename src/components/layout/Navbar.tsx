@@ -17,17 +17,20 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Derived: menu is "open" by storing the path it was opened on.
+  // When pathname changes (navigation), menuOpenAt !== pathname → closed automatically.
+  const [menuOpenAt, setMenuOpenAt] = useState<string | null>(null);
+  const mobileOpen = menuOpenAt === pathname;
+
+  const toggleMenu = () => setMenuOpenAt(mobileOpen ? null : pathname);
+  const closeMenu = () => setMenuOpenAt(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   const isAdmin = pathname.startsWith("/admin");
   if (isAdmin) return null;
@@ -43,7 +46,7 @@ export function Navbar() {
         )}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" aria-label="Quinn's Artistry Home">
+          <Link href="/" aria-label="Quinn's Artistry Home" onClick={closeMenu}>
             <Logo size="sm" />
           </Link>
 
@@ -74,7 +77,7 @@ export function Navbar() {
           {/* Mobile toggle */}
           <button
             className="md:hidden text-[#888888] hover:text-[#f0ece4] transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={toggleMenu}
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -90,6 +93,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={closeMenu}
                 className={cn(
                   "font-display text-4xl font-light transition-colors duration-200",
                   pathname === link.href
@@ -101,7 +105,7 @@ export function Navbar() {
               </Link>
             ))}
             <Button asChild size="lg" className="mt-4">
-              <Link href="/book">Book Now</Link>
+              <Link href="/book" onClick={closeMenu}>Book Now</Link>
             </Button>
           </nav>
           <div className="p-6 text-center text-xs text-[#444444] tracking-widest uppercase">

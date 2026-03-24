@@ -80,6 +80,7 @@ export function CustomDesignForm() {
     setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (_data: FormValues) => {
     setSubmitting(true);
     // Simulate API call

@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { DayPicker } from "react-day-picker";
 import { format, parseISO } from "date-fns";
 import { availableDays } from "@/lib/data";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
 
 interface StepDateTimeProps {
@@ -21,14 +21,12 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
 
   const availableDateStrings = availableDays.map((d) => d.date);
 
+  const isDateAvailable = (date: Date) =>
+    availableDateStrings.includes(format(date, "yyyy-MM-dd"));
+
   const availableSlots = selectedDate
     ? availableDays.find((d) => d.date === format(selectedDate, "yyyy-MM-dd"))?.slots ?? []
     : [];
-
-  const isDateAvailable = (date: Date) => {
-    const str = format(date, "yyyy-MM-dd");
-    return availableDateStrings.includes(str);
-  };
 
   const handleDateSelect = (date: Date | undefined) => {
     setSelectedDate(date);
@@ -44,64 +42,18 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
           Pick your date & time
         </h2>
         <p className="text-sm text-[#666666]">
-          Only available slots are shown. Highlighted dates have openings.
+          Dates with a gold dot have open slots. Select one to see available times.
         </p>
       </div>
 
       {/* Calendar */}
-      <div className="flex justify-center mb-6">
-        <DayPicker
-          mode="single"
+      <div className="border border-[#1c1c1c] bg-[#0e0e0e] p-5 mb-6">
+        <Calendar
           selected={selectedDate}
           onSelect={handleDateSelect}
-          disabled={(date) =>
-            date < new Date(new Date().setHours(0, 0, 0, 0)) || !isDateAvailable(date)
-          }
-          modifiers={{ available: (date) => isDateAvailable(date) }}
-          modifiersClassNames={{
-            available: "rdp-day-available",
-          }}
-          classNames={{
-            root: "rdp-custom",
-            months: "flex flex-col",
-            month: "space-y-4",
-            caption: "flex justify-center relative items-center mb-2",
-            caption_label: "text-sm text-[#f0ece4] font-medium tracking-wider uppercase",
-            nav: "flex items-center gap-1",
-            nav_button:
-              "h-7 w-7 flex items-center justify-center text-[#666666] hover:text-[#f0ece4] transition-colors",
-            table: "w-full border-collapse",
-            head_row: "flex mb-1",
-            head_cell:
-              "w-9 h-9 flex items-center justify-center text-[10px] tracking-widest uppercase text-[#444444]",
-            row: "flex w-full",
-            cell: "relative p-0",
-            day: cn(
-              "w-9 h-9 flex items-center justify-center text-sm transition-all duration-150",
-              "text-[#666666] hover:text-[#f0ece4] hover:bg-[#1a1a1a] cursor-pointer"
-            ),
-            day_selected: "bg-[#c4a35a] text-[#080808] hover:bg-[#c4a35a] hover:text-[#080808]",
-            day_today: "text-[#f0ece4] font-medium",
-            day_disabled: "text-[#2a2a2a] cursor-not-allowed hover:bg-transparent hover:text-[#2a2a2a]",
-            day_outside: "opacity-30",
-          }}
+          isAvailable={isDateAvailable}
+          disablePast
         />
-      </div>
-
-      {/* Available dot legend */}
-      <div className="flex items-center justify-center gap-4 text-[10px] text-[#666666] mb-6 tracking-widest uppercase">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 bg-[#c4a35a] rounded-full" />
-          <span>Selected</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 border border-[#c4a35a]/50 rounded-full" />
-          <span>Available</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <div className="w-2 h-2 bg-[#1c1c1c] rounded-full" />
-          <span>Unavailable</span>
-        </div>
       </div>
 
       {/* Time slots */}
@@ -120,14 +72,13 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
                   disabled={!slot.available}
                   onClick={() => setSelectedTime(slot.time)}
                   className={cn(
-                    "py-2.5 text-sm border transition-all duration-150",
-                    !slot.available && "border-[#1c1c1c] text-[#2a2a2a] cursor-not-allowed",
-                    slot.available &&
-                      selectedTime === slot.time
-                      ? "border-[#c4a35a] bg-[#c4a35a]/10 text-[#c4a35a]"
-                      : slot.available
-                      ? "border-[#242424] text-[#888888] hover:border-[#c4a35a]/50 hover:text-[#f0ece4]"
-                      : ""
+                    "py-3 text-sm border transition-all duration-150",
+                    !slot.available &&
+                      "border-[#1c1c1c] text-[#2a2a2a] cursor-not-allowed",
+                    slot.available && selectedTime === slot.time &&
+                      "border-[#c4a35a] bg-[#c4a35a]/10 text-[#c4a35a]",
+                    slot.available && selectedTime !== slot.time &&
+                      "border-[#242424] text-[#888888] hover:border-[#c4a35a]/50 hover:text-[#f0ece4] cursor-pointer"
                   )}
                 >
                   {slot.time}
@@ -135,6 +86,12 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {!selectedDate && (
+        <div className="mb-8 py-6 border border-dashed border-[#1c1c1c] text-center">
+          <p className="text-sm text-[#444444]">Select a date above to see available times</p>
         </div>
       )}
 
@@ -146,8 +103,7 @@ export function StepDateTime({ selected, onNext, onBack }: StepDateTimeProps) {
           className="flex-1"
           disabled={!canContinue}
           onClick={() =>
-            canContinue &&
-            onNext(format(selectedDate!, "yyyy-MM-dd"), selectedTime!)
+            canContinue && onNext(format(selectedDate!, "yyyy-MM-dd"), selectedTime!)
           }
         >
           Continue

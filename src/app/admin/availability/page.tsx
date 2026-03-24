@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { DayPicker } from "react-day-picker";
 import { format, parseISO } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
 import { availableDays } from "@/lib/data";
 import { AvailableDay, TimeSlot } from "@/lib/types";
 import { Button } from "@/components/ui/button";
@@ -59,7 +59,8 @@ export default function AdminAvailabilityPage() {
     setTimeout(() => setSaved(false), 2500);
   };
 
-  const availableDateObjects = days.map((d) => parseISO(d.date));
+  const isDateAvailable = (date: Date) =>
+    days.some((d) => d.date === format(date, "yyyy-MM-dd"));
 
   return (
     <div className="p-8">
@@ -82,32 +83,11 @@ export default function AdminAvailabilityPage() {
           <p className="text-xs tracking-[0.15em] uppercase text-[#888888] mb-4">
             Select Dates
           </p>
-          <DayPicker
-            mode="single"
+          <Calendar
             selected={selectedDate}
             onSelect={setSelectedDate}
-            disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0))}
-            modifiers={{ hasSlots: availableDateObjects }}
-            modifiersClassNames={{ hasSlots: "rdp-day-has-slots" }}
-            classNames={{
-              root: "rdp-admin",
-              months: "flex flex-col",
-              month: "space-y-4",
-              caption: "flex justify-center relative items-center mb-2",
-              caption_label: "text-sm text-[#f0ece4] font-medium tracking-wider uppercase",
-              nav: "flex items-center gap-1",
-              nav_button: "h-7 w-7 flex items-center justify-center text-[#666666] hover:text-[#f0ece4]",
-              table: "w-full border-collapse",
-              head_row: "flex mb-1",
-              head_cell: "w-9 h-9 flex items-center justify-center text-[10px] tracking-widest uppercase text-[#444444]",
-              row: "flex w-full",
-              cell: "relative p-0",
-              day: "w-9 h-9 flex items-center justify-center text-sm transition-all text-[#666666] hover:text-[#f0ece4] hover:bg-[#1a1a1a]",
-              day_selected: "bg-[#c4a35a] text-[#080808]",
-              day_today: "text-[#f0ece4] font-medium",
-              day_disabled: "text-[#2a2a2a] cursor-not-allowed",
-              day_outside: "opacity-30",
-            }}
+            isAvailable={isDateAvailable}
+            disablePast
           />
 
           {selectedDate && !dayEntry && (
