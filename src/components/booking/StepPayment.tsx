@@ -18,6 +18,7 @@ interface StepPaymentProps {
 
 export function StepPayment({ formData, onComplete, onBack }: StepPaymentProps) {
   const [loading, setLoading] = useState(false);
+  const [imgError, setImgError] = useState(false);
   const design = formData.designId ? getDesignById(formData.designId) : undefined;
   const basePrice = design?.basePrice ?? 0;
   const total = basePrice > 0 ? calculateTotal(basePrice, formData.serviceType) : 0;
@@ -73,14 +74,21 @@ export function StepPayment({ formData, onComplete, onBack }: StepPaymentProps) 
         {/* Design preview */}
         {design && (
           <div className="flex gap-4 p-4 border-b border-[#1c1c1c]">
-            <div className="relative w-16 h-16 shrink-0 overflow-hidden">
-              <Image
-                src={design.imageUrl}
-                alt={design.title}
-                fill
-                className="object-cover"
-                unoptimized
-              />
+            <div className="relative w-16 h-16 shrink-0 overflow-hidden bg-[#111111]">
+              {imgError ? (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[#2a2a2a] text-sm font-display">Q</span>
+                </div>
+              ) : (
+                <Image
+                  src={design.imageUrl}
+                  alt={design.title}
+                  fill
+                  className="object-cover"
+                  unoptimized
+                  onError={() => setImgError(true)}
+                />
+              )}
             </div>
             <div>
               <p className="text-xs text-[#c4a35a] tracking-widest uppercase mb-0.5 capitalize">

@@ -12,7 +12,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="https://images.unsplash.com/photo-1574695096851-9a36fe3b4d3b?w=1800&q=80"
+          src="https://source.unsplash.com/1800x1200/?tattoo,artist,studio,ink&sig=200"
           alt="Tattoo artistry"
           fill
           priority

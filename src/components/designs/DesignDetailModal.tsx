@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { ArrowRight, Clock, Tag } from "lucide-react";
 import {
   Dialog,
@@ -22,6 +23,7 @@ interface DesignDetailModalProps {
 }
 
 export function DesignDetailModal({ design, open, onClose }: DesignDetailModalProps) {
+  const [imgError, setImgError] = useState(false);
   const homePrice = Math.round(design.basePrice * (1 + HOME_SERVICE_SURCHARGE));
 
   return (
@@ -29,14 +31,24 @@ export function DesignDetailModal({ design, open, onClose }: DesignDetailModalPr
       <DialogContent className="max-w-2xl p-0 overflow-hidden">
         <div className="grid grid-cols-1 md:grid-cols-2">
           {/* Image */}
-          <div className="relative aspect-[3/4] md:aspect-auto min-h-64">
-            <Image
-              src={design.imageUrl}
-              alt={design.title}
-              fill
-              className="object-cover"
-              unoptimized
-            />
+          <div className="relative aspect-[3/4] md:aspect-auto min-h-64 bg-[#111111]">
+            {imgError ? (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <div className="w-12 h-12 border border-[#2a2a2a] flex items-center justify-center">
+                  <span className="text-[#2a2a2a] text-xl font-display">Q</span>
+                </div>
+                <span className="text-[10px] tracking-widest uppercase text-[#2a2a2a] capitalize">{design.category}</span>
+              </div>
+            ) : (
+              <Image
+                src={design.imageUrl}
+                alt={design.title}
+                fill
+                className="object-cover"
+                unoptimized
+                onError={() => setImgError(true)}
+              />
+            )}
           </div>
 
           {/* Details */}

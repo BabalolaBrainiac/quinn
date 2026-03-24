@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Home, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ const services = [
     description:
       "Visit Quinn's private studio in Lagos. A controlled, sterile environment with everything needed for a flawless session. The classic experience.",
     detail: "Includes full setup, aftercare kit & certificate of authenticity.",
-    image: "https://images.unsplash.com/photo-1561494785-dd34f09b0d5e?w=800&q=80",
+    image: "https://source.unsplash.com/800x600/?tattoo,studio,artist,session&sig=201",
     price: "Standard rates apply",
     href: "/book?service=studio",
     cta: "Book Studio Session",
@@ -26,7 +27,7 @@ const services = [
     description:
       "Quinn brings the studio to your location anywhere in Lagos. Premium convenience with zero compromise on hygiene or artistry.",
     detail: "30% service surcharge applies. Min. notice: 48hrs. Lagos only.",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800&q=80",
+    image: "https://source.unsplash.com/800x600/?tattoo,arm,skin,ink&sig=202",
     price: "+30% surcharge",
     href: "/book?service=home",
     cta: "Book Home Service",
@@ -34,6 +35,9 @@ const services = [
 ];
 
 export function ServiceTypes() {
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const handleImgError = (type: string) => setImgErrors((prev) => ({ ...prev, [type]: true }));
+
   return (
     <section className="py-28 bg-[#080808]">
       <div className="max-w-7xl mx-auto px-6">
@@ -56,14 +60,17 @@ export function ServiceTypes() {
               className="relative group overflow-hidden bg-[#111111] border border-[#1c1c1c]"
             >
               {/* Image */}
-              <div className="relative h-56 overflow-hidden">
-                <Image
-                  src={service.image}
-                  alt={service.type}
-                  fill
-                  className="object-cover opacity-40 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700"
-                  unoptimized
-                />
+              <div className="relative h-56 overflow-hidden bg-[#0a0a0a]">
+                {!imgErrors[service.type] && (
+                  <Image
+                    src={service.image}
+                    alt={service.type}
+                    fill
+                    className="object-cover opacity-40 group-hover:opacity-55 group-hover:scale-105 transition-all duration-700"
+                    unoptimized
+                    onError={() => handleImgError(service.type)}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#111111]" />
               </div>
 

@@ -16,6 +16,8 @@ interface StepDesignProps {
 
 export function StepDesign({ selected, onNext }: StepDesignProps) {
   const [picked, setPicked] = useState<string | undefined>(selected);
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+  const handleImgError = (id: string) => setImgErrors((prev) => ({ ...prev, [id]: true }));
 
   return (
     <div>
@@ -38,14 +40,21 @@ export function StepDesign({ selected, onNext }: StepDesignProps) {
               picked === design.id && "ring-1 ring-[#c4a35a]"
             )}
           >
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src={design.imageUrl}
-                alt={design.title}
-                fill
-                className="object-cover opacity-60 group-hover:opacity-90 transition-opacity"
-                unoptimized
-              />
+            <div className="relative aspect-square overflow-hidden bg-[#111111]">
+              {imgErrors[design.id] ? (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-[#2a2a2a] text-base font-display">Q</span>
+                </div>
+              ) : (
+                <Image
+                  src={design.imageUrl}
+                  alt={design.title}
+                  fill
+                  className="object-cover opacity-60 group-hover:opacity-90 transition-opacity"
+                  unoptimized
+                  onError={() => handleImgError(design.id)}
+                />
+              )}
               {picked === design.id && (
                 <div className="absolute inset-0 bg-[#c4a35a]/20 flex items-center justify-center">
                   <Check className="h-6 w-6 text-[#c4a35a]" />

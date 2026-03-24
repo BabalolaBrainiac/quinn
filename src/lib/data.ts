@@ -6,8 +6,7 @@ export const designs: Design[] = [
     id: "d1",
     title: "Sacred Geometry",
     category: "geometric",
-    // Geometric mandala tattoo on arm
-    imageUrl: "https://images.unsplash.com/photo-1559733977-0ca2f6764df5?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,geometric,mandala,blackink&sig=101",
     description: "Intricate sacred geometry patterns with precise linework. A meditation on mathematical beauty.",
     basePrice: 45000,
     estimatedHours: 3,
@@ -19,8 +18,7 @@ export const designs: Design[] = [
     id: "d2",
     title: "Botanical Whisper",
     category: "floral",
-    // Fine line floral tattoo
-    imageUrl: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,floral,botanical,fineline&sig=102",
     description: "Delicate botanical illustrations — leaves, stems, and blooms rendered in fine ink.",
     basePrice: 35000,
     estimatedHours: 2,
@@ -32,8 +30,7 @@ export const designs: Design[] = [
     id: "d3",
     title: "Obsidian Serpent",
     category: "blackwork",
-    // Blackwork snake tattoo
-    imageUrl: "https://images.unsplash.com/photo-1601445638532-3f040a0a3b66?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,blackwork,serpent,bold&sig=103",
     description: "Bold blackwork serpent design with ornamental detailing. Power and elegance intertwined.",
     basePrice: 65000,
     estimatedHours: 5,
@@ -45,8 +42,7 @@ export const designs: Design[] = [
     id: "d4",
     title: "Celestial Arc",
     category: "minimalist",
-    // Minimal fine line tattoo wrist/arm
-    imageUrl: "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,minimal,fineline,celestial&sig=104",
     description: "Sun, moon and stars in clean, minimal strokes. A cosmic narrative on skin.",
     basePrice: 25000,
     estimatedHours: 1.5,
@@ -58,8 +54,7 @@ export const designs: Design[] = [
     id: "d5",
     title: "Abstract Flow",
     category: "abstract",
-    // Abstract tattoo on skin
-    imageUrl: "https://images.unsplash.com/photo-1604881988758-f76ad2f7aac1?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,abstract,artistic,ink&sig=105",
     description: "Fluid abstract shapes that move with the body. An art piece as much as a tattoo.",
     basePrice: 55000,
     estimatedHours: 4,
@@ -71,8 +66,7 @@ export const designs: Design[] = [
     id: "d6",
     title: "Tribal Heritage",
     category: "tribal",
-    // Tribal arm/chest tattoo
-    imageUrl: "https://images.unsplash.com/photo-1563985336347-dd0a17e59d0a?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,tribal,bold,pattern&sig=106",
     description: "Modern reinterpretation of ancestral tribal patterns. Roots, reimagined.",
     basePrice: 50000,
     estimatedHours: 4,
@@ -84,8 +78,7 @@ export const designs: Design[] = [
     id: "d7",
     title: "Watercolor Bloom",
     category: "watercolor",
-    // Colorful watercolor tattoo
-    imageUrl: "https://images.unsplash.com/photo-1559656914-a30970c1affd?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,watercolor,colorful,floral&sig=107",
     description: "Vibrant watercolor-style roses with bleeding ink edges. Color as emotion.",
     basePrice: 70000,
     estimatedHours: 5,
@@ -97,8 +90,7 @@ export const designs: Design[] = [
     id: "d8",
     title: "Fine Line Portrait",
     category: "fine-line",
-    // Fine line detailed tattoo work
-    imageUrl: "https://images.unsplash.com/photo-1574695096851-9a36fe3b4d3b?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,fineline,portrait,realistic&sig=108",
     description: "Hyper-realistic fine line portrait work. Every detail, every shadow, perfectly placed.",
     basePrice: 120000,
     estimatedHours: 8,
@@ -110,8 +102,7 @@ export const designs: Design[] = [
     id: "d9",
     title: "Ornamental Collar",
     category: "geometric",
-    // Ornamental neck/collar tattoo
-    imageUrl: "https://images.unsplash.com/photo-1556979096-5b02f6c7bc60?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,ornamental,geometric,neck&sig=109",
     description: "Ornamental necklace-style collar tattoo with intricate patterning.",
     basePrice: 85000,
     estimatedHours: 6,
@@ -123,8 +114,7 @@ export const designs: Design[] = [
     id: "d10",
     title: "Minimal Koi",
     category: "minimalist",
-    // Minimalist fine-line tattoo
-    imageUrl: "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,koi,minimal,japanese&sig=110",
     description: "Single-needle koi fish in minimalist style. Fortune in clean lines.",
     basePrice: 40000,
     estimatedHours: 2.5,
@@ -136,8 +126,7 @@ export const designs: Design[] = [
     id: "d11",
     title: "Dark Botanica",
     category: "blackwork",
-    // Dark blackwork arm tattoo
-    imageUrl: "https://images.unsplash.com/photo-1613456151297-bb9dea0af78d?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,blackwork,gothic,dark&sig=111",
     description: "Dark botanical blackwork — thorns, dead flowers, and gothic botanica.",
     basePrice: 60000,
     estimatedHours: 4.5,
@@ -149,8 +138,7 @@ export const designs: Design[] = [
     id: "d12",
     title: "Phoenix Rising",
     category: "abstract",
-    // Large detailed back/arm tattoo piece
-    imageUrl: "https://images.unsplash.com/photo-1561494785-dd34f09b0d5e?w=600&q=80&fit=crop",
+    imageUrl: "https://source.unsplash.com/600x800/?tattoo,phoenix,bird,abstract&sig=112",
     description: "A phoenix composition blending realism with illustrative flair. Rebirth, rendered.",
     basePrice: 95000,
     estimatedHours: 7,
